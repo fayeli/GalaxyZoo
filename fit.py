@@ -12,14 +12,16 @@ from sklearn import tree
 colors = pd.read_csv('colors.csv',header=0,index_col=0)
 solutions = pd.read_csv('training_solutions.csv',index_col=0)
 roundness = pd.read_csv('roundness.csv',header=0,index_col=0)
+hueStds = pd.read_csv('hueStds.csv',header=0,index_col=0)
+
 #size of training/test set
 setsize = 3000
 colors = colors.iloc[:2*setsize]
 solutions = solutions.iloc[:2*setsize]
 roundness = roundness.iloc[:2*setsize]
 
-data_train = colors.iloc[:setsize].join(roundness[:setsize])
-data_test = colors.iloc[setsize:2*setsize].join(roundness[setsize:2*setsize])
+data_train = colors.iloc[:setsize].join(roundness[:setsize]).join(hueStds[:setsize])
+data_test = colors.iloc[setsize:2*setsize].join(roundness[setsize:2*setsize].join(hueStds[setsize:2*setsize])
 
 error_train = pd.Series(index=data_train.index,data=0)
 error_test = pd.Series(index=data_test.index,data=0)
