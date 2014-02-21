@@ -21,7 +21,7 @@ solutions = solutions.iloc[:2*setsize]
 roundness = roundness.iloc[:2*setsize]
 
 data_train = colors.iloc[:setsize].join(roundness[:setsize]).join(hueStds[:setsize])
-data_test = colors.iloc[setsize:2*setsize].join(roundness[setsize:2*setsize].join(hueStds[setsize:2*setsize])
+data_test = colors.iloc[setsize:2*setsize].join(roundness[setsize:2*setsize]).join(hueStds[setsize:2*setsize])
 
 error_train = pd.Series(index=data_train.index,data=0)
 error_test = pd.Series(index=data_test.index,data=0)
@@ -38,7 +38,7 @@ for i in range(n):
     target = solutions[col]
     target_train = target.iloc[0:setsize]
     target_test = target.iloc[setsize:2*setsize]
-    clf = tree.DecisionTreeClassifier(min_samples_split=5)
+    clf = tree.DecisionTreeClassifier(min_samples_split=50)
     fitted = clf.fit(data_train,target_train)
     #for errors regarding each column
     name[i] = col
