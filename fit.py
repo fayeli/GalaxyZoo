@@ -47,14 +47,21 @@ for i in range(n):
     error_test = error_test +  np.abs(fitted.predict(data_test)-target_test)
 
 #general distribution of number of errors
-print(error_train.value_counts())
-print(error_test.value_counts())
+#attribute and class, and then error rate for that class
 
+print('Training error for each attribute to classify:')
+print(train_error)
+print('Generalization error for each attribute to classify:')
+print(test_error)
+
+
+'''
 #show pictures with the most errors
 error_train.sort(ascending=True)
 print(error_train.head())
 error_test.sort(ascending=False)
 print(error_test.head())
+'''
 
 '''
 errors_dict = {'Column Name': name, 'Training Error': train_error, 'Test Error': test_error}
